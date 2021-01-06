@@ -1,0 +1,22 @@
+{
+  "name": "newsio-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": " nodemon --legacy-watch server.js",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chokidar": "^3.4.3",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.6"
+  }
+}

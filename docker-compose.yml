@@ -1,0 +1,51 @@
+version: '3'
+services: 
+  node-application:
+    container_name: node-application
+    build: 
+      context: node-application/
+      dockerfile: C:\Users\sachin\Documents\hritik\newsio-backend\node-application\Dockerfile.dev
+    ports: 
+      - "3000:3000"
+    volumes:
+      - app/node_modules/ 
+      - C:\Users\sachin\Documents\hritik\newsio-backend\node-application\:/app/ 
+    networks: 
+    - newsio
+  postgres:
+    hostname: hritikpc
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - newsio
+    restart: unless-stopped
+  
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+       - pgadmin:/root/.pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    networks:
+      - newsio
+    restart: unless-stopped
+
+networks:
+  newsio:
+    driver: bridge
+
+volumes:
+    postgres:
+    pgadmin:
