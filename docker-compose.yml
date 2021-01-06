@@ -41,7 +41,14 @@ services:
     networks:
       - newsio
     restart: unless-stopped
-
+  spider-java:
+    container_name: spider-java
+    build: 
+      context: C:\Users\sachin\Documents\hritik\newsio-backend\spider-java
+      dockerfile:   C:\Users\sachin\Documents\hritik\newsio-backend\spider-java\Dockerfile  
+    volumes: 
+      - C:\Users\sachin\Documents\hritik\newsio-backend\spider-java\:/app/
+    networks: newsio  
 networks:
   newsio:
     driver: bridge
